@@ -82,21 +82,6 @@ spec:
                 fromFieldPath: spec.parameters.nodes.instanceType
                 toFieldPath: spec.parameters.nodes.instanceType
 
-          - name: XOss
-            base:
-              apiVersion: observe.platform.upbound.io/v1alpha1
-              kind: XOss
-            patches:
-              - type: FromCompositeFieldPath
-                fromFieldPath: spec.parameters.deletionPolicy
-                toFieldPath: spec.parameters.deletionPolicy
-              - type: FromCompositeFieldPath
-                fromFieldPath: spec.parameters.id
-                toFieldPath: spec.parameters.id
-              - type: FromCompositeFieldPath
-                fromFieldPath: spec.parameters.operators.prometheus.version
-                toFieldPath: spec.parameters.operators.prometheus.version
-
           - name: XFlux
             base:
               apiVersion: gitops.platform.upbound.io/v1alpha1
@@ -126,22 +111,6 @@ spec:
                 by:
                   apiVersion: gitops.platform.upbound.io/v1alpha1
                   kind: XFlux
-                  resourceSelector:
-                    matchControllerRef: true
-                of:
-                  apiVersion: azure.platform.upbound.io/v1alpha1
-                  kind: XAKS
-                  resourceSelector:
-                    matchControllerRef: true
-
-          - name: usageXEksByXOss
-            base:
-              apiVersion: apiextensions.crossplane.io/v1alpha1
-              kind: Usage
-              spec:
-                by:
-                  apiVersion: observe.platform.upbound.io/v1alpha1
-                  kind: XOss
                   resourceSelector:
                     matchControllerRef: true
                 of:
